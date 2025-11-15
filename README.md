@@ -132,3 +132,55 @@ adding calendar events
 The system asks for human confirmation.
 
 4. Architecture Diagram (Text form for Kaggle)
+User
+  ↓
+FastAPI Gateway
+  ↓
+Planner Agent (LLM)
+  ↓
+Orchestrator
+  ├── Search Agent (flights/hotels/activities)
+  ├── Itinerary Agent
+  ├── Calendar Agent
+  └── Booking Agent
+  ↓
+Tools + KB + Memory
+  ├── Calendar Tool
+  ├── Email Draft Tool
+  ├── Search Tool (stub)
+  ├── FAISS Vector Store
+  └── SQLite User Memory
+ 5. Technical Implementation
+Backend
+
+Python 3.10+
+
+FastAPI server
+
+Custom LLM wrapper (OpenAI-compatible or Gemini-compatible)
+
+FAISS for vector search
+
+SQLite for persistent memory
+
+Dockerized deployment
+
+Code Structure
+app/
+  main.py
+  agent/
+    planner.py
+    runner.py
+    tools.py
+    memory.py
+  datastore/
+    vector_store.py
+    sqlite_store.py
+  api/
+    routes.py
+    schemas.py
+scripts/
+  ingest_kb.py
+tests/
+  test_agent.py
+
